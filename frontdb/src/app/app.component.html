@@ -1,0 +1,45 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"> Escola de dança </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link"  [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Visualizar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cadastrar
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/register', 'unidade']"> Unidade </a>
+            <a class="dropdown-item" [routerLink]="['/register', 'professor']"> Professores </a>
+            <a class="dropdown-item" [routerLink]="['/register', 'aluno']"> Alunos </a>
+            <a class="dropdown-item" [routerLink]="['/register', 'grupo']"> Grupos </a>
+            <a class="dropdown-item" [routerLink]="['/register', 'apresentacao']"> Apresentações </a>
+            <a class="dropdown-item" [routerLink]="['/register', 'sala']"> Salas </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="Cadastrar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Visualizar
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/visualize', 'unidade']"> Unidade </a>
+            <a class="dropdown-item" [routerLink]="['/visualize', 'professor']"> Professores </a>
+            <a class="dropdown-item" [routerLink]="['/visualize', 'aluno']"> Alunos </a>
+            <a class="dropdown-item" [routerLink]="['/visualize', 'grupo']"> Grupos </a>
+            <a class="dropdown-item" [routerLink]="['/visualize', 'apresentacao']"> Apresentações </a>
+            <a class="dropdown-item" [routerLink]="['/visualize', 'sala']"> Salas </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet> 
+  </div>
+</div>
