@@ -1,1 +1,57 @@
-<p>vunidade works!</p>
+<div class="content mt-3">
+    <h1> Unidades de escola </h1>
+
+    <div class="alert alert-danger" *ngIf="alertError" > Erro ao buscar os dados!! </div>
+
+    <div class="accordion" id="accordionExample">
+        <div *ngFor="let item of unidades; let i = index" class="card">
+            <div class="card-header" id="unity">
+            <h2 class="mb-0">
+                <button class="btn btn-link" (click)="showUnityData(i)" type="button" data-toggle="collapse" aria-expanded="true">
+                 Unidade: {{ item.nome }}
+                </button>
+            </h2>
+            </div>
+        
+            <div id="collapse{{i}}" class="collapse show" [ngClass]="{show: arrayShowUnity[i] == true}" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th colspan="2"> Código unidade </th>
+                        <td> {{ item.cod }} </td>
+                        <th colspan="2"> Nome unidade </th>
+                        <td> {{ item.nome }} </td>
+                    </tr>
+                    <tr>
+                        <th colspan="6" class="table-secondary text-center" > Endereço </th>
+                    </tr>
+                    <tr>
+                        <th> CEP </th>
+                        <td> {{ item.cep }} </td>
+                        <th> Número </th>
+                        <td> {{item.numero}} </td>
+                        <th> Complemento </th>
+                        <td> {{ item.complemento }} </td>
+                    </tr>
+                    <tr>
+                        <th colspan="6" class="table-secondary text-center"> Contato </th>
+                    </tr>
+                    <tr>
+                        <th colspan="3"> Email: </th>
+                        <td colspan="3"> {{ item.email }} </td>
+                    </tr>
+                    <tr  class="table-secondary text-center">
+                        <th colspan="6" > Telefones </th>
+                    </tr>
+                    <tr>
+                        <ng-container *ngFor="let phone of item.telefones; let j = index">
+                            <th> Telefone {{ j + 1 }}: </th>
+                            <td>  {{ phone }} </td>
+                        </ng-container>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

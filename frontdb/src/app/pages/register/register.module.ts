@@ -8,6 +8,9 @@ import { RalunoComponent } from './raluno/raluno.component';
 import { RgrupoComponent } from './rgrupo/rgrupo.component';
 import { RapresentacaoComponent } from './rapresentacao/rapresentacao.component';
 import { RsalaComponent } from './rsala/rsala.component';
+import { SelectUnityComponent } from 'src/app/components/select-unity/select-unity.component';
+
+import { FormsModule, FormGroup }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,11 @@ import { RsalaComponent } from './rsala/rsala.component';
     RalunoComponent,
     RgrupoComponent,
     RapresentacaoComponent,
-    RsalaComponent  
-  ],
+    RsalaComponent, 
+    SelectUnityComponent  ],
   imports: [
     CommonModule, 
+    FormsModule,
     RegisterRoutingModule
   ]
 })

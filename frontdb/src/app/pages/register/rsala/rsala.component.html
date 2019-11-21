@@ -1,1 +1,34 @@
-<p>rsala works!</p>
+<div class="content">
+    <h1> Cadastrar salas </h1>
+    <div class="alert alert-warning" *ngIf="alreadyExist"> Sala já cadastrado! </div>
+    <div class="alert alert-danger" *ngIf="unknowError"> Erro desconhecido </div>
+    <div class="alert alert-success" *ngIf="unitySuccess"> Sala cadastrada com sucesso! </div>
+    <form action="">
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
+                <select class="form-control" [(ngModel)]="unity" [ngModelOptions]="{standalone: true}" >
+                    <option value=""> Selecione a unidade </option>
+                    <option *ngFor="let unity of unidades" value="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label for=""> Código de sala  </label>
+                <input type="text" class="form-control" [(ngModel)]="cod" [ngModelOptions]="{standalone: true}" >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label for=""> Descrição  </label>
+                <textarea type="text" class="form-control" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" ></textarea>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success btn-block expand-full" (click)="sendObject()"> Cadastrar </button>
+        </div>
+    </div>
+</div>

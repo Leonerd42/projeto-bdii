@@ -1,0 +1,9 @@
+<form action="">
+    <div class="form-group">
+        <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option value=""> Selecione a unidade </option>
+            <option *ngFor="let unity of array" value="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+        </select>
+    </div>
+</form>

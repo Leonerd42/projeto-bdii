@@ -1,1 +1,75 @@
-<p>rprofessor works!</p>
+<div class="content mt-2 mb-5">
+        <h1> Cadastro de professor </h1>
+        <div class="alert alert-warning" *ngIf="alreadyExist"> Professor já cadastrado! </div>
+        <div class="alert alert-danger" *ngIf="unknowError"> Erro desconhecido </div>
+        <div class="alert alert-success" *ngIf="unitySuccess"> Professor cadastrada por sucesso! </div>
+        <form action="">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Nome do professor </label>
+                    <input type="text" class="form-control" [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> CPF </label>
+                    <input type="text" class="form-control" [(ngModel)]="cpf" [ngModelOptions]="{standalone: true}" >
+                </div>
+                <div class="form-group col">
+                    <label for=""> PIS </label>
+                    <input type="text" class="form-control" [(ngModel)]="pis" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Data de Nascimento </label>
+                    <input type="date" class="form-control" [(ngModel)]="dob" [ngModelOptions]="{standalone: true}" >
+                </div>
+                <div class="form-group col">
+                    <label for=""> Sexo </label>
+                    <select class="form-control" [(ngModel)]="sexo" [ngModelOptions]="{standalone: true}">
+                        <option selected> Selecione a unidade </option>
+                        <option value="m"> Masculino </option>
+                        <option value="f"> Feminino </option>
+                        <option value="n"> Ocultar informação </option>                   
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> CEP </label>
+                    <input type="text" class="form-control" [(ngModel)]="cep" [ngModelOptions]="{standalone: true}" >
+                </div>
+                <div class="form-group col">
+                    <label for=""> Número </label>
+                    <input type="text" class="form-control" [(ngModel)]="numero" [ngModelOptions]="{standalone: true}" >
+                </div>
+                <div class="form-group col">
+                    <label for=""> Complemento </label>
+                    <input type="text" class="form-control" [(ngModel)]="complemento" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Email </label>
+                    <input type="text" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <h4> Telefones  </h4> <button class="btn btn-success ml-3" (click)="addPhoneNumber()" > + </button><button class="btn btn-danger ml-3" (click)="removePhoneNumber()"> - </button>
+        </div>
+        <form action="">
+            <div class="form-row">
+                <div *ngFor="let item of quantPhone" class="form-group col"> 
+                    <label for=""> Telefone {{item}} </label>
+                    <input type="text" class="form-control" [(ngModel)]="telefones[item-1]" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success btn-block expand-full" (click)="sendObject()"> Cadastrar </button>
+            </div>
+        </div>
+    </div>
