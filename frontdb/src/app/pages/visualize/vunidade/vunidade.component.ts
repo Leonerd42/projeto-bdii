@@ -12,23 +12,24 @@ export class VUnidadeComponent implements OnInit {
 
   unidades = []; 
   arrayShowUnity = [];
-  constructor(private bdService: UnidadeService) { }
+  constructor(private bdService: UnidadeService) {
+    this.bdService.selectUnity([''],['']).subscribe((res: any) => {
+      console.log(res.data);
+      switch(res.status){
+      case 'get unidade ok':
+        this.unidades = res.data; 
+        for(let i=0; i<res.data.length; i++){
+          this.arrayShowUnity[i] = false;
+        }
+        break;
+      default:
+        this.alertError = true; 
+        break; 
+    }
+  }); }
 
   ngOnInit() {
-    this.bdService.selectUnity(['']).subscribe((res: any) => {
-      switch(res.status){
-        case 'get unidade ok':
-          this.unidades = res.data; 
-          for(let i=0; i<res.data.length; i++){
-            this.arrayShowUnity[i] = false;
-          }
-          break;
-        default:
-          this.alertError = true; 
-          break; 
-      }
-      
-    })
+    
   }
 
   showUnityData(i) {

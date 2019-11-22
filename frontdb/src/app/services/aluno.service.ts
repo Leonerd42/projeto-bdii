@@ -12,7 +12,7 @@ export class AlunoService {
     return this.db.insertData('aluno', obj); 
   }
 
-  getStudents(params: String[]){
-    return this.db.selectData('aluno',params);
+  getStudents(params: String[], conditional: String[]){
+    return this.db.selectData('aluno', params, conditional);
   }
 }

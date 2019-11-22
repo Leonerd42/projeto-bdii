@@ -16,7 +16,7 @@ export class UnidadeService {
   }
 
   // Ler somente o código da unidade e o nome dela 
-  selectUnity(params: String[]){
-    return this.dbService.selectData('unidade',params);
+  selectUnity(params: String[], conditional: String[]){
+    return this.dbService.selectData('unidade',params, conditional);
   }
 }

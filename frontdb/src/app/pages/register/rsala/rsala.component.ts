@@ -19,7 +19,7 @@ export class RsalaComponent implements OnInit {
   unidades; 
 
   constructor(private bdService: SalaService, private unityService: UnidadeService) {
-      this.unityService.selectUnity(['cod','nome']).subscribe((res: any) => {
+      this.unityService.selectUnity(['cod','nome'],['']).subscribe((res: any) => {
         console.log(res.data); 
         switch(res.status){
           case 'get unidade ok': 

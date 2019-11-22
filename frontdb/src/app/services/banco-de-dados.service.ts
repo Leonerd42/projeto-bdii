@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +34,11 @@ export class BancoDeDadosService {
     return this.http.post(`${this.url}/${endpoint}`, dados);
   }
 
-  selectData(endpoint: String, params: Array<String>){
-    var keys = '';
-    // Pega os parametros passados e coloca na string 
-    params.forEach((item, index, array) => keys += item + '&');
-
+  selectData(endpoint: String, params: String[], conditional: String[]){
     // Retorna para o service chamado
-    return this.http.get(`${this.url}/${endpoint}?${keys}`);
+    // restaurar essa linha: 
+    //return this.http.get(`${this.url}/${endpoint}?${keys}`);
+    return this.http.get(`${this.url}/${endpoint}?project={"params": ${JSON.stringify(params)}}&conditional={"params": ${JSON.stringify(conditional)}}`);
   }
 
   deleteData(endpoint: String, primaryKey: String) {

@@ -8,9 +8,32 @@ import { ApresentacaoService } from 'src/app/services/apresentacao.service';
 })
 export class VApresentacaoComponent implements OnInit {
 
-  constructor(private bdService: ApresentacaoService) { }
+  apresentacoes = [];
+
+  constructor(private bdService: ApresentacaoService) { 
+    this.bdService.getPresentation([''],['']).subscribe((res: any) => {
+      console.log(res.data); 
+        switch(res.status){
+          case 'get apresentacao ok': 
+            this.apresentacoes = res.data; 
+            break;
+          default: 
+          break;
+        }
+    })
+  }
 
   ngOnInit() {
   }
 
 }
+
+/**
+ * {
+      cod_grupo: 1, 
+      cod_apresentacao: 1, 
+      local: 'kajsdlaslkd', 
+      datetime: 'asasa'
+  }
+ * 
+ */

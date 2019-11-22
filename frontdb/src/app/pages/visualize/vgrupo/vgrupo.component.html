@@ -1,1 +1,50 @@
-<p>vgrupo works!</p>
+<div class="content mt-4 mb-5">
+    <h4> Grupos </h4>
+    <form action="">
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
+                <select class="form-control" [(ngModel)]="unity" (change)="updateGroups()" [ngModelOptions]="{standalone: true}" >
+                    <option value=""> Selecione a unidade </option>
+                    <option *ngFor="let unity of unidades" [value]="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="card mt-4" *ngFor="let grupo of grupos" >
+        <div class="card-header">
+           <h3> {{ grupo.nome_grupo }} </h3> 
+        </div>
+        <div class="card-body">
+            <table class="table"> 
+                <tr>
+                    <th> Código grupo </th>
+                    <td> {{ grupo.cod_grupo }} </td>
+                    <th> Sala: </th>
+                    <td> {{ grupo.sala }} </td>
+                </tr>
+                <tr>
+                    <th> Professor </th>
+                    <td> {{ grupo.professor }} </td>
+                </tr>
+                <tr *ngFor="let item of grupo.estilos_danca; let i = index">
+                    <th> Estilo {{ i+1 }} </th>
+                    <td> {{ item }} </td>
+                </tr>
+                <!-- PRECISA SER CONSERTADO DEPOIS -->
+                <tr *ngFor="let item of grupo.horarios_treino; let i = index">
+                    <th> Horario {{ i+1 }} </th>
+                    <td> {{ item }} </td>
+                </tr>
+                <tr>
+                    <td class="text-center" colspan='4'> <h5> Alunos </h5>  </td>
+                </tr>
+                <tr *ngFor="let item of grupo.alunos; let i = index">
+                    <th> Aluno {{ i+1 }} </th>
+                    <td> {{ item }} </td>
+                </tr>                
+            </table>
+        </div>
+    </div>
+</div>

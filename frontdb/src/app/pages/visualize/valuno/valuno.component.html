@@ -1,1 +1,64 @@
-<p>valuno works!</p>
+<div class="content mt-4">
+        <h2> Alunos </h2>
+    
+        <form action="">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
+                    <select class="form-control" (change)="filterStudent()" [(ngModel)]="unity" [ngModelOptions]="{standalone: true}" >
+                        <option value=""> Todas as unidades </option>
+                        <option *ngFor="let unity of unidades" [value]="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div class="card-columns">
+            <div class="card border-success" *ngFor="let aluno of alunos">
+                <div class="card-header">
+                   <h4> {{ aluno.nome }} </h4> 
+                </div>
+                <div class="card-body text-success">
+                    <h5 class="card-title"> Informações </h5>
+                    <table class='table text-primary'>
+                        <tr>
+                            <th> CPF </th>
+                            <td> {{ aluno.cpf }}</td>
+                        </tr>
+                        <tr>
+                            <th> Data de nascimento </th>
+                            <td> {{ aluno.dob }}</td>
+                        </tr>
+                        <tr>
+                            <th> Sexo </th>
+                            <td> {{ aluno.sexo == 'm' ? 'Masculino' : 'Feminino' }}</td>
+                        </tr>
+                        <tr>
+                            <th> CEP </th>
+                            <td> {{ aluno.cep }}</td>
+                        </tr>
+                        <tr>
+                            <th> Número </th>
+                            <td> {{ aluno.numero }}</td>
+                        </tr>
+                        <tr *ngIf="aluno.complemento != ''" >
+                            <th> Complemento </th>
+                            <td> {{ aluno.complemento }}</td>
+                        </tr>
+                        <tr>
+                            <th> E-mail </th>
+                            <td> {{ aluno.email }}</td>
+                        </tr>
+                        <tr>
+                            <th> Contato de emergência </th>
+                            <td> {{ aluno.emergencia }}</td>
+                        </tr>
+                        <tr *ngFor="let phone of aluno.telefones; let i = index">
+                            <th> Telefone {{ i + 1}} </th>
+                            <td> {{ phone }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    

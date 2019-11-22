@@ -3,8 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log('Recebido get!!'); 
-  var fields = Object.keys(req.query); 
+  console.log('>>> PROFESSORES <<< - Get Request'); 
+  var projecao = JSON.parse(req.query.project);
+  var condicao = JSON.parse(req.query.conditional);
 
   try{
       // Buscar o dado no banco de dados 
@@ -54,7 +55,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log('recebido a informação');
+  console.log('>>> PROFESSORES <<< - Post Request'); 
   console.log(req.body);
   try{
     // Inserir o dado no banco

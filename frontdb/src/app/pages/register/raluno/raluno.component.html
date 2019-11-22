@@ -48,7 +48,12 @@
                 <label for=""> Email </label>
                 <input type="text" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" >
             </div>
+            <div class="form-group col">
+                <label for=""> Contato de emergência </label>
+                <input type="text" class="form-control" [(ngModel)]="emergencia" [ngModelOptions]="{standalone: true}" >
+            </div>
         </div>
+
     </form>
     <div class="row">
         <h4> Telefones  </h4> <button class="btn btn-success ml-3" (click)="addPhoneNumber()" > + </button><button class="btn btn-danger ml-3" (click)="removePhoneNumber()"> - </button>

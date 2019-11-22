@@ -3,8 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log('Recebido salas get!!'); 
-  var fields = Object.keys(req.query); 
+  console.log('>>> SALAS <<< - Get Request'); 
+  var projecao = JSON.parse(req.query.project);
+  var condicao = JSON.parse(req.query.conditional);
   try{
         // Buscar o dado no banco de dados 
         // Caso fields.length == 0, buscar todas as tuplas
@@ -44,7 +45,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log('Salas - post - received');
+  console.log('>>> SALAS <<< - Post Request'); 
   console.log(req.body);
   try{
     // Inserir o dado no banco

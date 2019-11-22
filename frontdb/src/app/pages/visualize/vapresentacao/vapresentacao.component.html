@@ -1,1 +1,13 @@
-<p>vapresentacao works!</p>
+<div class="content mt-4 mb-5">
+        <h4> Grupos </h4>
+    
+        <div class="card mt-4 border-success" *ngFor="let apre of apresentacoes" >
+            <div class="card-body text-success">
+                <h3> Nome grupo: {{ apre.cod_grupo }} </h3>
+                <h4> Código apresentação: {{ apre.cod_apresentacao }} </h4>
+                <h4> Localização: {{ apre.local }}</h4>
+                <p> Quando: {{ apre.datetime }} </p>
+            </div>
+        </div>
+    </div>
+    

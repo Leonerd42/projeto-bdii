@@ -4,15 +4,11 @@ import { BancoDeDadosService } from './banco-de-dados.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SalaService {
+export class DancaService {
 
   constructor(private db: BancoDeDadosService) { }
 
-  sendRoom(obj: any) {
-    return this.db.insertData('salas', obj);
-  }
-
-  getRoom(project: String[], params: String[]){
-    return this.db.selectData('salas',project, params);
+  getStyles(project: String[], params: String[]){
+    return this.db.selectData('estilos', project, params); 
   }
 }

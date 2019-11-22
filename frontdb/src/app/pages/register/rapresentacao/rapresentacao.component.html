@@ -1,1 +1,41 @@
-<p>rapresentacao works!</p>
+<div class="content mt-4">
+        <h1> Cadastrar apresentação </h1>
+        <div class="alert alert-warning" *ngIf="alreadyExist"> Apresentação já cadastrado! </div>
+        <div class="alert alert-danger" *ngIf="unknowError"> Erro desconhecido </div>
+        <div class="alert alert-success" *ngIf="unitySuccess"> Apresentação cadastrada com sucesso! </div>
+        <form action="">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="exampleFormControlSelect1"> Selecione o grupo </label>
+                    <select class="form-control" [(ngModel)]="grupo" [ngModelOptions]="{standalone: true}" >
+                        <option value=""> Selecione o grupo</option>
+                        <option *ngFor="let grupo of grupos" [value]="grupo.cod_grupo" > {{ grupo.nome_grupo }} </option> <!-- MUDAR O NOME -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Código apresentação  </label>
+                    <input [disabled]="grupo == ''" type="text" class="form-control" [(ngModel)]="cod_apresentacao" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Digite o local da apresentação  </label>
+                    <input [disabled]="grupo == ''" type="text" class="form-control" [(ngModel)]="local" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for=""> Selecione a data e horario  </label>
+                    <input [disabled]="grupo == ''" type="datetime-local" class="form-control" [(ngModel)]="datetime" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <button [disabled]="grupo == ''" class="btn btn-success btn-block expand-full" (click)="sendObject()"> Cadastrar </button>
+            </div>
+        </div>
+    </div>
+    

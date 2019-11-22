@@ -8,11 +8,13 @@ import { VUnidadeComponent } from './vunidade/vunidade.component';
 import { VGrupoComponent } from './vgrupo/vgrupo.component';
 import { VApresentacaoComponent } from './vapresentacao/vapresentacao.component';
 import { VSalaComponent } from './vsala/vsala.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HomevComponent, VProfessorComponent, VAlunoComponent, VUnidadeComponent, VGrupoComponent, VApresentacaoComponent, VSalaComponent],
   imports: [
     CommonModule, 
+    FormsModule,
     VisualizeRoutingModule
   ]
 })

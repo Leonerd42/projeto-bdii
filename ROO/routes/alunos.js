@@ -3,8 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log('Recebido aluno get!!'); 
-  var fields = Object.keys(req.query); 
+  console.log('>>> ALUNO <<< - Get Request'); 
+  var projecao = JSON.parse(req.query.project);
+  var condicao = JSON.parse(req.query.conditional);
 
   try{
       // Buscar o dado no banco de dados 
@@ -21,7 +22,8 @@ router.get('/', function(req, res, next) {
             numero: 2102, 
             complemento: 'portão verde enferrujado',
             email: 'email1@unesp.com', 
-            telefones: ['1234234']
+            telefones: ['1234234'], 
+            emergencia: '25425635'
         }, 
         {
           nome: 'Pedro', 
@@ -32,7 +34,8 @@ router.get('/', function(req, res, next) {
           numero: 112, 
           complemento: '',
           email: '12313@unesp.com', 
-          telefones: ['1234234', '91823913']
+          telefones: ['1234234', '91823913'], 
+          emergencia: '25425635'
         }, 
         {
           nome: 'Tania', 
@@ -43,7 +46,8 @@ router.get('/', function(req, res, next) {
           numero: 2102, 
           complemento: '',
           email: 'tania@unesp.com', 
-          telefones: ['1234234']
+          telefones: ['1234234'], 
+          emergencia: '25425635'
         },{
           nome: 'Leonardo', 
           cpf: '123412543',  
@@ -53,7 +57,8 @@ router.get('/', function(req, res, next) {
           numero: 2102, 
           complemento: 'portão verde enferrujado',
           email: 'email1@unesp.com', 
-          telefones: ['1234234']
+          telefones: ['1234234'], 
+          emergencia: '25425635'
       }, 
       {
         nome: 'Pedro', 
@@ -64,7 +69,8 @@ router.get('/', function(req, res, next) {
         numero: 112, 
         complemento: '',
         email: '12313@unesp.com', 
-        telefones: ['1234234', '91823913']
+        telefones: ['1234234', '91823913'], 
+        emergencia: '25425635'
       }, 
       {
         nome: 'Tania', 
@@ -75,7 +81,8 @@ router.get('/', function(req, res, next) {
         numero: 2102, 
         complemento: '',
         email: 'tania@unesp.com', 
-        telefones: ['1234234']
+        telefones: ['1234234'], 
+        emergencia: '25425635'
       },{
         nome: 'Leonardo', 
         cpf: '123412543',  
@@ -85,7 +92,8 @@ router.get('/', function(req, res, next) {
         numero: 2102, 
         complemento: 'portão verde enferrujado',
         email: 'email1@unesp.com', 
-        telefones: ['1234234']
+        telefones: ['1234234'], 
+        emergencia: '25425635'
     }, 
     {
       nome: 'Pedro', 
@@ -96,7 +104,8 @@ router.get('/', function(req, res, next) {
       numero: 112, 
       complemento: '',
       email: '12313@unesp.com', 
-      telefones: ['1234234', '91823913']
+      telefones: ['1234234', '91823913'], 
+      emergencia: '25425635'
     }, 
     {
       nome: 'Tania', 
@@ -107,7 +116,8 @@ router.get('/', function(req, res, next) {
       numero: 2102, 
       complemento: '',
       email: 'tania@unesp.com', 
-      telefones: ['1234234']
+      telefones: ['1234234'], 
+      emergencia: '25425635'
     } ,{
       nome: 'Leonardo', 
       cpf: '123412543',  
@@ -117,7 +127,8 @@ router.get('/', function(req, res, next) {
       numero: 2102, 
       complemento: 'portão verde enferrujado',
       email: 'email1@unesp.com', 
-      telefones: ['1234234']
+      telefones: ['1234234'], 
+      emergencia: '25425635'
   }, 
   {
     nome: 'Pedro', 
@@ -128,7 +139,8 @@ router.get('/', function(req, res, next) {
     numero: 112, 
     complemento: '',
     email: '12313@unesp.com', 
-    telefones: ['1234234', '91823913']
+    telefones: ['1234234', '91823913'], 
+    emergencia: '25425635'
   }, 
   {
     nome: 'Tania', 
@@ -139,7 +151,8 @@ router.get('/', function(req, res, next) {
     numero: 2102, 
     complemento: '',
     email: 'tania@unesp.com', 
-    telefones: ['1234234']
+    telefones: ['1234234'], 
+    emergencia: '25425635'
   } ,{
     nome: 'Leonardo', 
     cpf: '123412543',  
@@ -149,7 +162,8 @@ router.get('/', function(req, res, next) {
     numero: 2102, 
     complemento: 'portão verde enferrujado',
     email: 'email1@unesp.com', 
-    telefones: ['1234234']
+    telefones: ['1234234'], 
+    emergencia: '25425635'
 }, 
 {
   nome: 'Pedro', 
@@ -160,7 +174,8 @@ router.get('/', function(req, res, next) {
   numero: 112, 
   complemento: '',
   email: '12313@unesp.com', 
-  telefones: ['1234234', '91823913']
+  telefones: ['1234234', '91823913'], 
+  emergencia: '25425635'
 }, 
 {
   nome: 'Tania', 
@@ -171,7 +186,8 @@ router.get('/', function(req, res, next) {
   numero: 2102, 
   complemento: '',
   email: 'tania@unesp.com', 
-  telefones: ['1234234']
+  telefones: ['1234234'], 
+  emergencia: '25425635'
 } ,{
             nome: 'Leonardo', 
             cpf: '123412543',  
@@ -181,7 +197,8 @@ router.get('/', function(req, res, next) {
             numero: 2102, 
             complemento: 'portão verde enferrujado',
             email: 'email1@unesp.com', 
-            telefones: ['1234234']
+            telefones: ['1234234'], 
+            emergencia: '25425635'
         }, 
         {
           nome: 'Pedro', 
@@ -192,7 +209,8 @@ router.get('/', function(req, res, next) {
           numero: 112, 
           complemento: '',
           email: '12313@unesp.com', 
-          telefones: ['1234234', '91823913']
+          telefones: ['1234234', '91823913'], 
+          emergencia: '25425635'
         }, 
         {
           nome: 'Tania', 
@@ -203,7 +221,8 @@ router.get('/', function(req, res, next) {
           numero: 2102, 
           complemento: '',
           email: 'tania@unesp.com', 
-          telefones: ['1234234']
+          telefones: ['1234234'], 
+          emergencia: '25425635'
         },{
           nome: 'Leonardo', 
           cpf: '123412543',  
@@ -213,7 +232,8 @@ router.get('/', function(req, res, next) {
           numero: 2102, 
           complemento: 'portão verde enferrujado',
           email: 'email1@unesp.com', 
-          telefones: ['1234234']
+          telefones: ['1234234'], 
+          emergencia: '25425635'
       }, 
       {
         nome: 'Pedro', 
@@ -224,7 +244,8 @@ router.get('/', function(req, res, next) {
         numero: 112, 
         complemento: '',
         email: '12313@unesp.com', 
-        telefones: ['1234234', '91823913']
+        telefones: ['1234234', '91823913'], 
+        emergencia: '25425635'
       }, 
       {
         nome: 'Tania', 
@@ -235,7 +256,8 @@ router.get('/', function(req, res, next) {
         numero: 2102, 
         complemento: '',
         email: 'tania@unesp.com', 
-        telefones: ['1234234']
+        telefones: ['1234234'], 
+        emergencia: '25425635'
       }  
       ];
       // Enviando resposta ao usuario
@@ -255,8 +277,8 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log('recebido a informação');
-  console.log(req.body);
+  console.log('>>> ALUNO <<< - Post Request'); 
+  console.log(JSON.parse(req.body));
   try{
     // Inserir o dado no banco
     // --->> Inserir com o sql aqui 

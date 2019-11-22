@@ -11,4 +11,8 @@ export class ProfessorService {
   sendProfessor(obj: any){
     return this.db.insertData('professor', obj); 
   }
+
+  getProfessor(project: String[], params: String[]){
+      return this.db.selectData('professor', project, params); 
+  }
 }

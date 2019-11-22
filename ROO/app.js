@@ -14,6 +14,7 @@ var professorRouter = require('./routes/professores');
 var alunoRouter = require('./routes/alunos');
 var grupoRouter = require('./routes/grupos');
 var salasRouter = require('./routes/salas');
+var estilosRouter = require('./routes/estilos');
 var apresentacoesRouter = require('./routes/apresentacoes');
 
 var app = express();
@@ -51,6 +52,8 @@ app.use('/aluno', alunoRouter);
 app.use('/grupo', grupoRouter);
 // salas
 app.use('/salas', salasRouter);
+// estilos de danca
+app.use('/estilos', estilosRouter);
 // apresentacoes
 app.use('/apresentacao', apresentacoesRouter);
 

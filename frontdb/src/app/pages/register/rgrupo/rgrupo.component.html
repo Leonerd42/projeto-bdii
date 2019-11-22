@@ -9,7 +9,7 @@
                     <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
                     <select class="form-control" [(ngModel)]="unity" (change)="searchFiels()" [ngModelOptions]="{standalone: true}" >
                         <option value="" selected> Selecione a unidade </option>
-                        <option *ngFor="let unity of unidades" value="unity.cod"  > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+                        <option *ngFor="let unity of unidades" [value]="unity.cod"  > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
                     </select>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <label for=""> Professor </label>
                     <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="professor" [ngModelOptions]="{standalone: true}">
                         <option value=""> Selecione o professor </option>
-                        <option *ngFor="let professor of BDProfessores" value="professor.cpf" > {{ professor.nome }} </option>
+                        <option *ngFor="let professor of BDProfessores" [value]="professor.cpf" > {{ professor.nome }} </option>
                     </select>
                 </div>
             </div>
@@ -37,17 +37,72 @@
                     <label for=""> Sala </label>
                     <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="sala" [ngModelOptions]="{standalone: true}">
                         <option value=""> Selecione a sala </option>
-                        <option *ngFor="let sala of BDSala" value="sala.cod" > {{ sala.cod }} </option>
+                        <option *ngFor="let sala of BDSala" [value]="sala.cod_sala" > {{ sala.cod_sala }} </option>
                     </select>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <h4> Horários de treino </h4>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[0]"  [ngModelOptions]="{standalone: true}" id="segunda">
+                        <label class="custom-control-label" for="segunda"> Segunda-Feira </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[1]"  [ngModelOptions]="{standalone: true}" id="terca">
+                        <label class="custom-control-label" for="terca"> Terça-Feira</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[2]"  [ngModelOptions]="{standalone: true}" id="quarta">
+                        <label class="custom-control-label" for="quarta"> Quarta-Feira </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[3]"  [ngModelOptions]="{standalone: true}" id="quinta">
+                        <label class="custom-control-label" for="quinta"> Quinta-Feira </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[4]"  [ngModelOptions]="{standalone: true}" id="sexta">
+                        <label class="custom-control-label" for="sexta"> Sexta-Feira </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[5]"  [ngModelOptions]="{standalone: true}" id="sabado">
+                        <label class="custom-control-label" for="sabado"> Sabado </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[6]"  [ngModelOptions]="{standalone: true}" id="domingo">
+                        <label class="custom-control-label" for="domingo"> Domingo </label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for=""> Escolha o horario </label>
+                    <input type="time" class='form-control' [(ngModel)]="hora"  [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
         </form>
+        <div class="row">
+            <div class="col">
+                <button [disabled]="unity == ''" class="btn btn-primary mb-2 btn-block expand-full" (click)="registerTime()"> Cadastrar Horário </button>
+            </div>
+        </div>
+
+        <div *ngIf="horarios_treino.length > 0" class="listahorarios">
+            <p *ngFor="let horario of horarios_treino"> 
+                {{ horario.dias_semana }} as {{ horario.horario }}
+            </p>
+        </div>
+
         <h4> Estilos de dança <button class="btn btn-success ml-3" (click)="addDanceStyle()" > + </button><button class="btn btn-danger ml-3" (click)="removeDanceStyle()"> - </button> </h4>
         <form action="">
-            <div class="form-row" *ngFor="let item of InputEstilos">
+            <div class="form-row" *ngFor="let item of InputEstilos; let i = index">
                 <div  class="form-group col"> 
                     <label for=""> Estilo {{item}} </label>
-                    <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="InputEstilos[item-1]" [ngModelOptions]="{standalone: true}" >
+                    <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="estilos_danca[i]" [ngModelOptions]="{standalone: true}" >
+                        <option *ngFor="let danca of BDEstilos_danca" [value]="danca"> {{ danca }} </option>
+    
                     </select>
                 </div>
             </div>
@@ -58,15 +113,18 @@
                     <label for=""> Aluno {{ j + 1 }} </label>
                     <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="alunos[j]" [ngModelOptions]="{standalone: true}" >
                         <option value=""> Selecione o aluno </option>
-                        <option *ngFor="let aluno of BDAlunos" value="aluno.cpf"> {{ aluno.nome }} - {{ aluno.cpf }} </option>
+                        <option *ngFor="let aluno of BDAlunos" [value]="aluno.cpf"> {{ aluno.nome }} - {{ aluno.cpf }} </option>
                     </select>
                 </div>
             </div>
 
         </form>
+        <div class="alert alert-warning" *ngIf="alreadyExist"> Grupo já cadastrado! </div>
+        <div class="alert alert-danger" *ngIf="unknowError"> Erro desconhecido </div>
+        <div class="alert alert-success" *ngIf="unitySuccess"> Grupo cadastrado com sucesso! </div>
         <div class="row">
             <div class="col">
-                <button class="btn btn-success btn-block expand-full" (click)="sendObject()"> Cadastrar Grupo </button>
+                <button [disabled]="unity == ''" class="btn btn-success btn-block expand-full" (click)="sendObject()"> Cadastrar Grupo </button>
             </div>
         </div>
 </div>
