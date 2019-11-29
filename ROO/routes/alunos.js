@@ -5,15 +5,32 @@ var database = require('./../oracle/database.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log('>>> ALUNO <<< - Get Request'); 
+  //console.log(req);
   var projecao = JSON.parse(req.query.project);
+  console.log('projecao: ' + projecao);
   var condicao = JSON.parse(req.query.conditional);
-
-  try{
+  var alunos;
+  database.Select("*","estudantes","1 = 1").then((dados) => {//parametros enviados n tao mudando nd
+    console.log(dados);
+    res.send({status: 'get aluno ok', data: dados}); 
+  }).catch((e) => {
+    switch (e) {
+      case 1:
+          res.send({status: 'not-found', data: e}); 
+        break;
+    
+      default:
+          res.send({status: 'unknow-error', data : e}); 
+        break;
+    }
+    console.log(e);
+  } );
+  /*try{
       // Buscar o dado no banco de dados 
       // Caso fields.length == 0, buscar todas as tuplas
-
+      console.log("Alunos: " + alunos);
       // Para ser excluido e substituido pela conexão ao bd
-      var alunos = [
+      var alunos1 = [
         {
             nome: 'Leonardo', 
             cpf: '123412543',  
@@ -261,8 +278,9 @@ router.get('/', function(req, res, next) {
         emergencia: '25425635'
       }  
       ];
+     // console.log(alunos1);
       // Enviando resposta ao usuario
-      res.send({status: 'get aluno ok', data: alunos}); 
+      res.send({status: 'get aluno okaaa', data: alunos}); 
   } catch(e){
     switch (e) {
       case 1:
@@ -273,7 +291,7 @@ router.get('/', function(req, res, next) {
           res.send({status: 'unknow-error'}); 
         break;
     }
-  }
+  }*/
 });
 
 

@@ -39,6 +39,7 @@ export class VAlunoComponent implements OnInit {
 
   getAlunos(){
     this.bdService.getStudents([''],[this.unity]).subscribe((res: any) => {
+      console.log(res.status);
       console.log(res.data); 
         switch(res.status){
           case 'get aluno ok': 
