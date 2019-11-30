@@ -42,8 +42,24 @@ module.exports = {
     },
     Select: async function (campos,tabelas,condicoes){
         let sql, binds, options, result; 
+        
         //sql ="Select a.CPF,a.NOME,a.SEXO,a.DATANASCIMENTO,a.EMAIL,t.column_value as telefone,a.CONTATO_EMERGENCIA from alunos a, TABLE(a.Telefones) t";
         sql ="Select al.CPF,al.NOME,al.SEXO,al.DATANASCIMENTO,al.EMAIL,al.CONTATO_EMERGENCIA,al.endereco.cep as cep, al.endereco.numero as numero, al.endereco.complemento as complemento,  tabe.telefones From (SELECT CPF, LISTAGG(telefone,',') WITHIN GROUP (ORDER BY telefone) AS Telefones From (Select a.CPF as CPF,t.column_value as telefone from alunos a, TABLE(a.Telefones) t) tab GROUP BY CPF) tabe, alunos al where al.cpf = tabe.cpf order by al.nome" ;
+        binds = {};
+        options = {
+        outFormat: oracledb.OBJECT   // query result format
+        // extendedMetaData: true,   // get extra metadata
+        // fetchArraySize: 100       // internal buffer allocation size for tuning
+        };
+        
+        result = await connection.execute(sql, binds, options);
+        //console.log(result);
+        //console.log(result.rows);
+        return result.rows; 
+    },
+    SelectUnidades: async function (){
+        let sql, binds, options, result; 
+        sql ="Select un.CODIGO_UNIDADE,un.NOME,un.EMAIL,un.endereco.cep as cep, un.endereco.numero as numero, un.endereco.complemento as complemento,  tabe.telefones From (SELECT CODIGO_UNIDADE, LISTAGG(telefone,',') WITHIN GROUP (ORDER BY telefone) AS Telefones From (Select a.codigo_unidade as CODIGO_UNIDADE,t.column_value as telefone from unidades_escola a, TABLE(a.Telefones) t) tab GROUP BY CODIGO_UNIDADE) tabe, unidades_escola un where un.codigo_unidade = tabe.codigo_unidade order by un.nome" ;
         binds = {};
         options = {
         outFormat: oracledb.OBJECT   // query result format

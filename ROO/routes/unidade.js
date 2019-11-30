@@ -9,8 +9,36 @@ router.get('/', function(req, res, next) {
   var condicao = JSON.parse(req.query.conditional);
   console.log(projecao); 
   console.log(condicao); 
+  
+  database.SelectUnidades().then((dados) => {//parametros enviados n tao mudando nd
+    console.log(dados);
+    var array = dados.map((item) => {
+       return {
+        cod: item.CODIGO_UNIDADE, 
+        nome: item.NOME,
+        cep: item.CEP, 
+        numero: item.NUMERO, 
+        complemento: item.COMPLEMENTO,
+        email: item.EMAIL, 
+        telefones: item.TELEFONES 
+        //salas: item.SALAS
+       };
+    });
+    res.send({status: 'get unidade ok', data: array}); 
+  }).catch((e) => {
+    switch (e) {
+      case 1:
+          res.send({status: 'not-found', data: e}); 
+        break;
+    
+      default:
+          res.send({status: 'unknow-error', data : e}); 
+        break;
+    }
+    console.log(e);
+  } );
 
-  try{
+  /*try{
       // Buscar o dado no banco de dados 
       // Caso fields.length == 0, buscar todas as tuplas
 
@@ -74,7 +102,7 @@ router.get('/', function(req, res, next) {
           res.send({status: 'unknow-error'}); 
         break;
     }
-  }
+  }*/
 });
 
 router.post('/', function(req, res, next) {

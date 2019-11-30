@@ -44,7 +44,7 @@
                         <th colspan="6" > Telefones </th>
                     </tr>
                     <tr>
-                        <ng-container *ngFor="let phone of item.telefones; let j = index">
+                        <ng-container *ngFor="let phone of item.telefones.split(','); let j = index">
                             <th> Telefone {{ j + 1 }}: </th>
                             <td>  {{ phone }} </td>
                         </ng-container>
