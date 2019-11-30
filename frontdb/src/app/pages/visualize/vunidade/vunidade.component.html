@@ -49,6 +49,20 @@
                             <td>  {{ phone }} </td>
                         </ng-container>
                     </tr>
+                    <ng-container *ngIf="item.salas != '0'">
+                        <tr  class="table-secondary text-center">
+                            <th colspan="6" > Salas </th>
+                        </tr>
+                    </ng-container>
+                   
+                    <tr>
+                        <ng-container *ngFor="let sala of item.salas.split(','); let k = index" >
+                            <ng-container *ngIf="sala>0">
+                                <th> Sala {{ k + 1 }}: </th>
+                                <td>  codigo da sala: {{ sala }} </td>
+                            </ng-container>
+                        </ng-container>
+                    </tr>
                 </table>
             </div>
             </div>

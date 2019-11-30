@@ -52,7 +52,7 @@
                         <th> E-mail </th>
                         <td> {{ professor.email }}</td>
                     </tr>
-                    <tr *ngFor="let phone of professor.telefones; let i = index">
+                    <tr *ngFor="let phone of professor.telefones.split(','); let i = index">
                         <th> Telefone {{ i + 1}} </th>
                         <td> {{ phone }}</td>
                     </tr>

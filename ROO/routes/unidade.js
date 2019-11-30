@@ -20,8 +20,8 @@ router.get('/', function(req, res, next) {
         numero: item.NUMERO, 
         complemento: item.COMPLEMENTO,
         email: item.EMAIL, 
-        telefones: item.TELEFONES 
-        //salas: item.SALAS
+        telefones: item.TELEFONES,
+        salas: ((item.SALAS)? item.SALAS:'0'),
        };
     });
     res.send({status: 'get unidade ok', data: array}); 
@@ -113,7 +113,7 @@ router.post('/', function(req, res, next) {
 
   var sql = "insert into unidades_escola values("+obj.codigo+", '"+obj.nome+"',\
   ENDERECO_TY("+obj.CEP+","+obj.numero+","+((obj.complemento == '') ? "null" : "'"+obj.complemento+"'") +"), "+obj.email+", \
-  TELEFONE_NT('"+obj.telefones+"'), null)";
+  TELEFONE_NT('"+obj.telefones+"'), SALA_NT(SALA_TY(null)))";
   
   console.log(sql); 
   database.Insert(sql).then((response) => {

@@ -49,23 +49,30 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   console.log('>>> SALAS <<< - Post Request'); 
   console.log(req.body);
-  try{
-    // Inserir o dado no banco
-    // --->> Inserir com o sql aqui 
-
-    // Enviar a resposta ao usuario
-    res.send({status: 'post salas ok'});
-  } catch(e){
-    // Dependendo da conexão com o banco retorna esses tipos de erros;
-    switch (e) {
+  
+  var obj = req.body;
+  console.log(obj);
+  //var sql = "insert into (Select TABLE(a.Salas) from unidades_escola a where a.codigo_unidade = "+obj.unity_cod+") values(SALA_TY("+obj.sala_cod+", '"+obj.sala_description+"'))";
+  var sql = "insert into TABLE(Select salas from unidades_escola un where un.codigo_unidade ="+obj.unity_cod+") \
+     values(SALA_TY("+obj.sala_cod+"))";
+  //falta adicionar descricao pq o tipo SALA_TY n tem descricao
+  console.log(sql); 
+  
+  database.Insert(sql).then((response) => {
+    console.log(response); 
+    res.send({status: 'post salas ok'});  
+  }).catch((err) => {
+    console.log(err);
+    switch (err.errorNum) {
       case 1:
-            res.send({status: 'already-exists'});
+        res.send({status: 'already-exists'});
         break;
+    
       default:
-            res.send({status: 'unknown-error'});
-        break;
+          res.send({status: 'unknown-error'});
+      break;
     }
-  }
+  });
   });
   
 router.delete('/', function(req, res, next) {

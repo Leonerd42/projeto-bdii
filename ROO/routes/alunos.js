@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
   var condicao = JSON.parse(req.query.conditional);
   console.log('condicao: ', condicao);
   var alunos;
-  database.Select("*","estudantes","1 = 1").then((dados) => {//parametros enviados n tao mudando nd
+  database.SelectAlunos().then((dados) => {//parametros enviados n tao mudando nd
     console.log(dados);
     var array = dados.map((item) => {
        return {

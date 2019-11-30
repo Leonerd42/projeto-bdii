@@ -8,8 +8,41 @@ router.get('/', function(req, res, next) {
   console.log('>>> PROFESSORES <<< - Get Request'); 
   var projecao = JSON.parse(req.query.project);
   var condicao = JSON.parse(req.query.conditional);
-
-  try{
+  console.log("projecao");
+  console.log(projecao);
+  var condicao = JSON.parse(req.query.conditional);
+  console.log('condicao: ', condicao);
+  var alunos;
+  database.SelectProfessores().then((dados) => {//parametros enviados n tao mudando nd
+    console.log(dados);
+    var array = dados.map((item) => {
+       return {
+        nome: item.NOME, 
+        cpf: item.CPF,  
+        dob: item.DATANASCIMENTO, 
+        sexo: item.SEXO, 
+        cep: item.CEP, 
+        numero: item.NUMERO, 
+        complemento: item.COMPLEMENTO,
+        email: item.EMAIL, 
+        telefones: item.TELEFONES, 
+        pis: item.NUMERO_PIS
+       };
+    });
+    res.send({status: 'get professor ok', data: array}); 
+  }).catch((e) => {
+    switch (e) {
+      case 1:
+          res.send({status: 'not-found', data: e}); 
+        break;
+    
+      default:
+          res.send({status: 'unknow-error', data : e}); 
+        break;
+    }
+    console.log(e);
+  } );
+  /*try{
       // Buscar o dado no banco de dados 
       // Caso fields.length == 0, buscar todas as tuplas
 
@@ -52,7 +85,7 @@ router.get('/', function(req, res, next) {
           res.send({status: 'unknow-error'}); 
         break;
     }
-  }
+  }*/
 });
 
 
