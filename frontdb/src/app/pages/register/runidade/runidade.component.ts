@@ -51,7 +51,7 @@ export class RUnidadeComponent implements OnInit {
                   this.unitySuccess = false; 
                 }, 4000);
                 break;
-              case 'already-exits': 
+              case 'already-exists': 
                 this.alreadyExist = true; 
                 break; 
               default: 

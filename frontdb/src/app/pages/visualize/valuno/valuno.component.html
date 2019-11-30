@@ -15,44 +15,44 @@
         <div class="card-columns">
             <div class="card border-success" *ngFor="let aluno of alunos">
                 <div class="card-header">
-                   <h4> {{ aluno.NOME }} </h4> 
+                   <h4> {{ aluno.nome }} </h4> 
                 </div>
                 <div class="card-body text-success">
                     <h5 class="card-title"> Informações </h5>
                     <table class='table text-primary'>
                         <tr>
                             <th> CPF </th>
-                            <td> {{ aluno.CPF }}</td>
+                            <td> {{ aluno.cpf }}</td>
                         </tr>
                         <tr>
                             <th> Data de nascimento </th>
-                            <td> {{ aluno.DATANASCIMENTO }}</td>
+                            <td> {{ aluno.dob }}</td>
                         </tr>
                         <tr>
                             <th> Sexo </th>
-                            <td> {{ aluno.SEXO == 'm' ? 'Masculino' : 'Feminino' }}</td>
+                            <td> {{ aluno.sexo == 'm' ? 'Masculino' : 'Feminino' }}</td>
                         </tr>
                         <tr>
                             <th> CEP </th>
-                            <td> {{ aluno.CEP }}</td>
+                            <td> {{ aluno.cep }}</td>
                         </tr>
                         <tr>
                             <th> Número </th>
-                            <td> {{ aluno.NUMERO }}</td>
+                            <td> {{ aluno.numero }}</td>
                         </tr>
                         <tr *ngIf="aluno.complemento != ''" >
                             <th> Complemento </th>
-                            <td> {{ aluno.COMPLEMENTO }}</td>
+                            <td> {{ aluno.complemento }}</td>
                         </tr>
                         <tr>
                             <th> E-mail </th>
-                            <td> {{ aluno.EMAIL }}</td>
+                            <td> {{ aluno.email }}</td>
                         </tr>
                         <tr>
                             <th> Contato de emergência </th>
-                            <td> {{ aluno.CONTATO_EMERGENCIA }}</td>
+                            <td> {{ aluno.emergencia }}</td>
                         </tr>
-                        <tr *ngFor="let phone of aluno.TELEFONES.split(','); let i = index">
+                        <tr *ngFor="let phone of aluno.telefones.split(','); let i = index">
                             <th> Telefone {{ i + 1}} </th>
                             <td> {{ phone }}</td>
                         </tr>

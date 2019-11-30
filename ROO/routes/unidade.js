@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   console.log('>>> UNIDADE <<< - Get Request'); 
   var projecao = JSON.parse(req.query.project);
   var condicao = JSON.parse(req.query.conditional);
+  console.log(projecao); 
+  console.log(condicao); 
 
   try{
       // Buscar o dado no banco de dados 
@@ -77,26 +79,28 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   console.log('>>> UNIDADE <<< - Post Request'); 
-  console.log(req.body);
-  try{
-    // Inserir o dado no banco
-    // --->> Inserir com o sql aqui 
-
-    // Enviar a resposta ao usuario
+  var obj = req.body;
+  console.log(obj);
+  var sql = "insert into unidades_escola values("+obj.codigo+", '"+obj.nome+"',\
+  ENDERECO_TY("+obj.CEP+","+obj.numero+","+((obj.complemento == '') ? "null" : "'"+obj.complemento+"'") +"), "+obj.email+", \
+  TELEFONE_NT('"+obj.telefones[0]+"'), null)";
+  
+  console.log(sql); 
+  database.Insert(sql).then((response) => {
+    console.log(response); 
     res.send({status: 'post unidade ok'});
-  } catch(e){
-    // Dependendo da conexão com o banco retorna esses tipos de erros;
-    switch (e) {
+  }).catch((err) => {
+    console.log(err);
+    switch (err.errorNum) {
       case 1:
-         res.send({status: 'already-exists'});
+        res.send({status: 'already-exists'});
         break;
     
       default:
           res.send({status: 'unknown-error'});
-        break;
+      break;
     }
-  }
- 
+  });
 });
 
 router.delete('/', function(req, res, next) {

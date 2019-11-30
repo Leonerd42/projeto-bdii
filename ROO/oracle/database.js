@@ -1,4 +1,5 @@
 var oracledb = require('oracledb'); 
+oracledb.autoCommit = true;
 var config = require('./dbconfig'); 
 var connection;
 
@@ -12,8 +13,18 @@ module.exports = {
             console.log(e);
         }
     }, 
-    Insert: function () {
-        console.log('inserindo dados');
+    Insert: async function (sql) {
+        console.log(">>> Inserindo no banco <<< SQL: "+ sql)
+        let  binds, options, result; 
+        binds = {};
+        options = {
+        outFormat: oracledb.OBJECT   // query result format
+        // extendedMetaData: true,   // get extra metadata
+        // fetchArraySize: 100       // internal buffer allocation size for tuning 
+        };
+
+        result = await connection.execute(sql, binds, options);
+        return result; 
     }, 
     Select: async function (){
         let sql, binds, options, result; 
