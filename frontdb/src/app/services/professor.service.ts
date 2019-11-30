@@ -8,11 +8,11 @@ export class ProfessorService {
 
   constructor(private db: BancoDeDadosService) { }
 
-  sendProfessor(obj: any){
-    return this.db.insertData('professor', obj); 
+  sendProfessor(obj){
+    return this.db.insertData('professores', obj);
   }
 
   getProfessor(project: String[], params: String[]){
-      return this.db.selectData('professor', project, params); 
+      return this.db.selectData('professores', project, params); 
   }
 }

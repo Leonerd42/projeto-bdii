@@ -40,7 +40,7 @@ export class RalunoComponent implements OnInit {
       emergencia: this.emergencia, 
       telefones: this.telefones
     }; 
-
+    console.log(objeto);
     //envia o dado 
     this.bdService.sendAluno(objeto).subscribe((res: any) => {
       console.log(res); 

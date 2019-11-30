@@ -41,7 +41,7 @@ export class RProfessorComponent implements OnInit {
       pis: this.pis, 
       telefones: this.telefones
     }; 
-
+    console.log(objeto);
     // 
     this.bdService.sendProfessor(objeto).subscribe((res: any) => {
         switch(res.status) {

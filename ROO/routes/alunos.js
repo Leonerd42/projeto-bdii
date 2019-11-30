@@ -64,26 +64,31 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log('>>> ALUNO <<< - Post Request'); 
-  console.log(JSON.parse(req.body));
-  try{
-    // Inserir o dado no banco
-    // --->> Inserir com o sql aqui 
+  console.log('>>> Alunos <<< - Post Request'); 
+  var obj = req.body;
+  console.log(obj);
+  obj.telefones = obj.telefones.join('\',\''); // pro obj telefone ficar ('telf1','telf2')
 
-    // Enviar a resposta ao usuario
+  var sql = "insert into alunos values(ALUNO_TY("+obj.cpf+", '"+obj.nome+"','"+obj.sexo+"',TO_DATE('"+obj.dob+"','yyyy-mm-dd'),'"+obj.email+"',\
+  ENDERECO_TY("+obj.cep+","+obj.numero+","+((obj.complemento == '') ? "null" : "'"+obj.complemento+"'") +"), \
+  TELEFONE_NT('"+obj.telefones+"'),'"+obj.emergencia+"', null))";
+  console.log(sql); 
+  
+  database.Insert(sql).then((response) => {
+    console.log(response); 
     res.send({status: 'post aluno ok'});
-  } catch(e){
-    // Dependendo da conexão com o banco retorna esses tipos de erros;
-    switch (e) {
+  }).catch((err) => {
+    console.log(err);
+    switch (err.errorNum) {
       case 1:
-         res.send({status: 'already-exists'});
+        res.send({status: 'already-exists'});
         break;
     
       default:
           res.send({status: 'unknown-error'});
-        break;
+      break;
     }
-  }
+  });
 });
   
 router.delete('/', function(req, res, next) {

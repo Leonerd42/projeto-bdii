@@ -81,9 +81,11 @@ router.post('/', function(req, res, next) {
   console.log('>>> UNIDADE <<< - Post Request'); 
   var obj = req.body;
   console.log(obj);
+  obj.telefones = obj.telefones.join('\',\''); // pro obj telefone ficar ('telf1','telf2')
+
   var sql = "insert into unidades_escola values("+obj.codigo+", '"+obj.nome+"',\
   ENDERECO_TY("+obj.CEP+","+obj.numero+","+((obj.complemento == '') ? "null" : "'"+obj.complemento+"'") +"), "+obj.email+", \
-  TELEFONE_NT('"+obj.telefones[0]+"'), null)";
+  TELEFONE_NT('"+obj.telefones+"'), null)";
   
   console.log(sql); 
   database.Insert(sql).then((response) => {

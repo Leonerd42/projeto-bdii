@@ -43,7 +43,7 @@ module.exports = {
     Select: async function (campos,tabelas,condicoes){
         let sql, binds, options, result; 
         //sql ="Select a.CPF,a.NOME,a.SEXO,a.DATANASCIMENTO,a.EMAIL,t.column_value as telefone,a.CONTATO_EMERGENCIA from alunos a, TABLE(a.Telefones) t";
-        sql ="Select al.CPF,al.NOME,al.SEXO,al.DATANASCIMENTO,al.EMAIL,al.CONTATO_EMERGENCIA,al.endereco.cep as cep, al.endereco.numero as numero, al.endereco.complemento as complemento,  tabe.telefones From (SELECT CPF, LISTAGG(telefone,',') WITHIN GROUP (ORDER BY telefone) AS Telefones From (Select a.CPF as CPF,t.column_value as telefone from alunos a, TABLE(a.Telefones) t) tab GROUP BY CPF) tabe, alunos al where al.cpf = tabe.cpf";
+        sql ="Select al.CPF,al.NOME,al.SEXO,al.DATANASCIMENTO,al.EMAIL,al.CONTATO_EMERGENCIA,al.endereco.cep as cep, al.endereco.numero as numero, al.endereco.complemento as complemento,  tabe.telefones From (SELECT CPF, LISTAGG(telefone,',') WITHIN GROUP (ORDER BY telefone) AS Telefones From (Select a.CPF as CPF,t.column_value as telefone from alunos a, TABLE(a.Telefones) t) tab GROUP BY CPF) tabe, alunos al where al.cpf = tabe.cpf order by al.nome" ;
         binds = {};
         options = {
         outFormat: oracledb.OBJECT   // query result format
