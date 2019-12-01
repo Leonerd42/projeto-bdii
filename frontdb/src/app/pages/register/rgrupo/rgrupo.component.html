@@ -48,7 +48,20 @@
             </div>
             <div class="form-row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="horarios_treino" [ngModelOptions]="{standalone: true}" >
+                    <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="horarios_treino" [ngModelOptions]="{standalone: true}" >
+                        <option value=""> Selecione um horario </option>
+                        <option value="1000"> Das 8h as 9h </option>
+                        <option value="1001"> Das 9h as 10h </option>
+                        <option value="1002"> Das 10h as 11h </option>
+                        <option value="1003"> Das 11h as 12h </option>
+                        <option value="1004"> Das 14h as 15h </option>
+                        <option value="1005"> Das 15h as 16h </option>
+                        <option value="1006"> Das 16h as 17h </option>
+                        <option value="1007"> Das 17h as 18h </option>
+                        <option value="1008"> Das 19h as 20h </option>
+                        <option value="1009"> Das 20h as 21h </option>
+                        <option value="1010"> Das 21h as 22h </option>
+                    </select>
                 </div>
             </div> 
         </form>
