@@ -26,7 +26,7 @@ export class RgrupoComponent implements OnInit {
   unity = ''; cod_grupo; nome_grupo; professor = ''; sala = ''; 
 
   //Vetores do fomulário
-  alunos = []; estilos_danca = []; horarios_treino = []; 
+  alunos = []; estilos_danca = []; horarios_treino = ''; 
 
   // Manipulação do formulário
   InputEstilos = [1]; InputEstudantes = new Array(15);
@@ -147,25 +147,25 @@ export class RgrupoComponent implements OnInit {
     });
   }
 
-  registerTime(){
-    console.log(this.weekDays)
-    var days = ''; 
-    this.weekDays.forEach((item, index) => {
-       if(item){
-          days += `${this.nameDaysWeek[index]}, `; 
-       }
-    });
-    // save data 
-    var horario = {
-      dias_semana: days, 
-      horario: this.hora
-    };
+  // registerTime(){
+  //   console.log(this.weekDays)
+  //   var days = ''; 
+  //   this.weekDays.forEach((item, index) => {
+  //      if(item){
+  //         days += `${this.nameDaysWeek[index]}, `; 
+  //      }
+  //   });
+  //   // save data 
+  //   var horario = {
+  //     dias_semana: days, 
+  //     horario: this.hora
+  //   };
 
-    this.horarios_treino.push(horario);
-    // clear 
-    this.weekDays = [false, false, false, false, false, false, false];
-    this.hora = '';
-  }
+  //   this.horarios_treino.push(horario);
+  //   // clear 
+  //   this.weekDays = [false, false, false, false, false, false, false];
+  //   this.hora = '';
+  // }
 
   addDanceStyle(){
     var sizeArray = this.InputEstilos.length; 
@@ -180,8 +180,8 @@ export class RgrupoComponent implements OnInit {
   }
 
   clearData() {
-    this.cod_grupo = this.unity = this.nome_grupo = this.professor = this.sala = ''; 
-    this.estilos_danca = this.horarios_treino = []; 
+    this.cod_grupo = this.unity = this.nome_grupo = this.professor = this.sala = this.horarios_treino =  ''; 
+    this.estilos_danca = []; 
     for(let i = 0; i < 15; i++)
       this.alunos[i] = '';
     this.weekDays = [false, false, false, false, false, false, false];

@@ -41,12 +41,19 @@
                     </select>
                 </div>
             </div>
-            <div class="form-row">
+             <div class="form-row">
                 <div class="form-col">
                     <h4> Horários de treino </h4>
                 </div>
             </div>
             <div class="form-row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="horarios_treino" [ngModelOptions]="{standalone: true}" >
+                </div>
+            </div> 
+        </form>
+
+            <!-- <div class="form-row">
                 <div class="form-group col">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" [(ngModel)]="weekDays[0]"  [ngModelOptions]="{standalone: true}" id="segunda">
@@ -82,7 +89,7 @@
                     <input type="time" class='form-control' [(ngModel)]="hora"  [ngModelOptions]="{standalone: true}">
                 </div>
             </div>
-        </form>
+        
         <div class="row">
             <div class="col">
                 <button [disabled]="unity == ''" class="btn btn-primary mb-2 btn-block expand-full" (click)="registerTime()"> Cadastrar Horário </button>
@@ -93,7 +100,7 @@
             <p *ngFor="let horario of horarios_treino"> 
                 {{ horario.dias_semana }} as {{ horario.horario }}
             </p>
-        </div>
+        </div> -->
 
         <h4> Estilos de dança <button class="btn btn-success ml-3" (click)="addDanceStyle()" > + </button><button class="btn btn-danger ml-3" (click)="removeDanceStyle()"> - </button> </h4>
         <form action="">

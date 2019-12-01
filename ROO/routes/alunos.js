@@ -41,25 +41,6 @@ router.get('/', function(req, res, next) {
     }
     console.log(e);
   } );
-  /*try{
-      // Buscar o dado no banco de dados 
-      // Caso fields.length == 0, buscar todas as tuplas
-      console.log("Alunos: " + alunos);
-      // Para ser excluido e substituido pela conexão ao bd
-      var alunos1 = [
-        {
-            nome: 'Leonardo', 
-            cpf: '123412543',  
-            dob: '2019-11-20', 
-            sexo: 'm', 
-            cep: 17065439, 
-            numero: 2102, 
-            complemento: 'portão verde enferrujado',
-            email: 'email1@unesp.com', 
-            telefones: ['1234234'], 
-            emergencia: '25425635'
-        }, */
-
 });
 
 
