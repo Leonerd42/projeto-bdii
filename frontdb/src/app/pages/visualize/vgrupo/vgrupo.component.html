@@ -18,29 +18,32 @@
         </div>
         <div class="card-body">
             <table class="table"> 
+
                 <tr>
                     <th> Código grupo </th>
                     <td> {{ grupo.cod_grupo }} </td>
                     <th> Sala: </th>
                     <td> {{ grupo.sala }} </td>
+                    <th> Unidade: </th>
+                    <td> {{ grupo.unidade }} </td>
                 </tr>
                 <tr>
                     <th> Professor </th>
                     <td> {{ grupo.professor }} </td>
                 </tr>
-                <tr *ngFor="let item of grupo.estilos_danca; let i = index">
+                <tr *ngFor="let item of grupo.estilos_danca.split(','); let i = index">
                     <th> Estilo {{ i+1 }} </th>
                     <td> {{ item }} </td>
                 </tr>
                 <!-- PRECISA SER CONSERTADO DEPOIS -->
-                <tr *ngFor="let item of grupo.horarios_treino; let i = index">
-                    <th> Horario {{ i+1 }} </th>
-                    <td> {{ item }} </td>
+                <tr>
+                    <th> Horario  </th>
+                    <td> {{ grupo.horario_inicio }}: {{grupo.horario_fim}} </td>
                 </tr>
                 <tr>
                     <td class="text-center" colspan='4'> <h5> Alunos </h5>  </td>
                 </tr>
-                <tr *ngFor="let item of grupo.alunos; let i = index">
+                <tr *ngFor="let item of grupo.alunos.split(','); let i = index">
                     <th> Aluno {{ i+1 }} </th>
                     <td> {{ item }} </td>
                 </tr>                

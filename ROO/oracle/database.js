@@ -93,7 +93,60 @@ module.exports = {
         //console.log(result);
         //console.log(result.rows);
         return result.rows; 
-    }
+    },
+    SelectSalas: async function (sql){
+        let  binds, options, result; 
+        binds = {};
+        options = {
+        outFormat: oracledb.OBJECT   // query result format
+        // extendedMetaData: true,   // get extra metadata
+        // fetchArraySize: 100       // internal buffer allocation size for tuning
+        };
+        
+        result = await connection.execute(sql, binds, options);
+        //console.log(result);
+        //console.log(result.rows);
+        return result.rows; 
+    },
+    SelectGrupos: async function (unidade){
+        let sql_unidade = "";
+        if(unidade != "") sql_unidade = "and m.codigo_unidade.codigo_unidade = "+unidade;
+        let sql, binds, options, result; 
+        sql ="select m.codigo_unidade.codigo_unidade as unidade,\
+        m.codigo_grupo.nome as nome_grupo, m.codigo_grupo.codigo_grupo as cod_grupo,\
+        m.professor_cpf.nome as professor,m.codigo_sala as sala,\
+        m.codigo_hora.hora_inicio as inicio,m.codigo_hora.hora_fim as fim,\
+        alunos1.Nomes as alunos,dances.Estilos_dancas as estilos_danca From \
+        (SELECT CODIGO_GRUPO, LISTAGG(danca,',') WITHIN GROUP (ORDER BY danca) AS Estilos_Dancas From (Select a.codigo_grupo as CODIGO_GRUPO,t.nome as danca from grupos a, TABLE(a.Estilos_Dancas) t) tab GROUP BY CODIGO_GRUPO) dances,\
+        (SELECT codigo_grupo, LISTAGG(nome,',') WITHIN GROUP (ORDER BY nome) AS Nomes From (select m.codigo_grupo.codigo_grupo as codigo_grupo,alunos.nome as nome from alunos,ministra m where alunos.grupo = m.codigo_grupo) group by codigo_grupo) alunos1, \
+        ministra m where dances.CODIGO_GRUPO = m.codigo_grupo.codigo_grupo and alunos1.codigo_grupo = m.codigo_grupo.codigo_grupo "
+        +sql_unidade ;
+        binds = {};
+        options = {
+        outFormat: oracledb.OBJECT   // query result format
+        // extendedMetaData: true,   // get extra metadata
+        // fetchArraySize: 100       // internal buffer allocation size for tuning
+        };
+        
+        result = await connection.execute(sql, binds, options);
+        //console.log(result);
+        //console.log(result.rows);
+        return result.rows; 
+    },
+    SelectApresentacoes: async function (sql){
+        let  binds, options, result; 
+        binds = {};
+        options = {
+        outFormat: oracledb.OBJECT   // query result format
+        // extendedMetaData: true,   // get extra metadata
+        // fetchArraySize: 100       // internal buffer allocation size for tuning
+        };
+        
+        result = await connection.execute(sql, binds, options);
+        //console.log(result);
+        //console.log(result.rows);
+        return result.rows; 
+    },
 };
 
 /** 

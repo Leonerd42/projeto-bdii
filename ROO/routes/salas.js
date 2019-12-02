@@ -7,8 +7,34 @@ var database = require('./../oracle/database.js');
 router.get('/', function(req, res, next) {
   console.log('>>> SALAS <<< - Get Request'); 
   var projecao = JSON.parse(req.query.project);
+  console.log("projecao:")
+  console.log(projecao);
   var condicao = JSON.parse(req.query.conditional);
-  try{
+  console.log("condicao:")
+  console.log(condicao.params[0]);
+  var sql_condicao = "";
+  if(condicao.params[0] != "") sql_condicao ="where un.codigo_unidade = "+condicao.params[0];
+  var sql = "select s.* from unidades_escola un, TABLE(un.salas) s "+sql_condicao;
+  database.SelectSalas(sql).then((response) => {
+    var salas = response.map((item) => {
+      return {
+        cod_sala : item.CODIGO_SALA
+      };
+   });
+    console.log(response); 
+    res.send({status: 'get salas ok', data: salas}); 
+  }).catch((e) =>{
+    switch (e) {
+      case 1:
+          res.send({status: 'not-found'}); 
+        break;
+    
+      default:
+          res.send({status: 'unknow-error'}); 
+        break;
+    }
+  })
+  /*try{
         // Buscar o dado no banco de dados 
         // Caso fields.length == 0, buscar todas as tuplas
 
@@ -42,7 +68,7 @@ router.get('/', function(req, res, next) {
             res.send({status: 'unknow-error'}); 
           break;
       }
-    }
+    }*/
 });
 
 

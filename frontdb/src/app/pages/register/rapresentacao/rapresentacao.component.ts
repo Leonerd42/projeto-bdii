@@ -13,7 +13,7 @@ export class RapresentacaoComponent implements OnInit {
   unitySuccess: boolean = false; 
   unknowError: boolean = false; 
 
-  grupo = ''; cod_apresentacao = ''; local = ''; datetime;
+  grupo = ''; apresentacao = ''; local = ''; data; horario;
 
   grupos; 
 
@@ -35,15 +35,14 @@ export class RapresentacaoComponent implements OnInit {
   }
 
   sendObject(){
-    // verificação 
-
-    // criando obj
     var apre = {
-       cod_grupo: this.grupo, 
-       cod_apresentacao: this.cod_apresentacao, 
-       local: this.local, 
-       datetime: this.datetime
+       cod_grupo: this.grupo,
+       cod_apresentacao: this.apresentacao,
+       local: this.local,
+       data: this.data,
+       horario: this.horario
     };
+    console.log(apre);
     this.bdService.sendPresentation(apre).subscribe((res: any) => {
       switch(res.status) {
         case 'post apresentacao ok':
@@ -67,7 +66,7 @@ export class RapresentacaoComponent implements OnInit {
   }
 
   clearData() {
-    this.cod_apresentacao = this.grupo = this.datetime = this.local = ''; 
+    this.apresentacao = this.grupo = this.horario = this.local = ''; 
   }
 
   clearErrors(){
