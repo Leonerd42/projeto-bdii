@@ -34,41 +34,6 @@ router.get('/', function(req, res, next) {
         break;
     }
   })
-  /*try{
-        // Buscar o dado no banco de dados 
-        // Caso fields.length == 0, buscar todas as tuplas
-
-        // Para ser excluido e substituido pela conexão ao bd
-        var salas = [
-          {
-             cod_unity: 1, 
-             cod_sala: 1, 
-             description: 'kajsdlaslkd'
-          },
-          {
-            cod_unity: 1, 
-            cod_sala: 2, 
-            description: 'aksjdkaskd as ksdç a'
-          },
-          {
-            cod_unity: 1, 
-            cod_sala: 3, 
-            description: 'lks dskdj '
-          }
-        ];
-        // Enviando resposta ao usuario
-        res.send({status: 'get salas ok', data: salas}); 
-    } catch(e){
-      switch (e) {
-        case 1:
-            res.send({status: 'not-found'}); 
-          break;
-      
-        default:
-            res.send({status: 'unknow-error'}); 
-          break;
-      }
-    }*/
 });
 
 
@@ -78,28 +43,30 @@ router.post('/', function(req, res, next) {
   
   var obj = req.body;
   console.log(obj);
+  if(obj.sala_cod != null || obj.sala_cod != undefined){
   //var sql = "insert into (Select TABLE(a.Salas) from unidades_escola a where a.codigo_unidade = "+obj.unity_cod+") values(SALA_TY("+obj.sala_cod+", '"+obj.sala_description+"'))";
-  var sql = "insert into TABLE(Select salas from unidades_escola un where un.codigo_unidade ="+obj.unity_cod+") \
-     values(SALA_TY("+obj.sala_cod+"))";
-  //falta adicionar descricao pq o tipo SALA_TY n tem descricao
-  console.log(sql); 
-  
-  database.Insert(sql).then((response) => {
-    console.log(response); 
-    res.send({status: 'post salas ok'});  
-  }).catch((err) => {
-    console.log(err);
-    switch (err.errorNum) {
-      case 1:
-        res.send({status: 'already-exists'});
-        break;
+    var sql = "insert into TABLE(Select salas from unidades_escola un where un.codigo_unidade ="+obj.unity_cod+") \
+      values(SALA_TY("+obj.sala_cod+"))";
+    //falta adicionar descricao pq o tipo SALA_TY n tem descricao
+    console.log(sql); 
     
-      default:
-          res.send({status: 'unknown-error'});
-      break;
-    }
-  });
-  });
+    database.Insert(sql).then((response) => {
+      console.log(response); 
+      res.send({status: 'post salas ok'});  
+    }).catch((err) => {
+      console.log(err);
+      switch (err.errorNum) {
+        case 1:
+          res.send({status: 'already-exists'});
+          break;
+      
+        default:
+            res.send({status: 'unknown-error'});
+        break;
+      }
+    });
+  }
+});
   
 router.delete('/', function(req, res, next) {
     res.send({status: 'delete salas ok'});
