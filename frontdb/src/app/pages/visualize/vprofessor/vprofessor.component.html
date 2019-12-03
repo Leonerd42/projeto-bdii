@@ -1,17 +1,17 @@
 <div class="content mt-4">
     <h2> Professores </h2>
 
-    <form action="">
+    <!-- <form action="">
         <div class="form-row">
             <div class="form-group col">
                 <label for="exampleFormControlSelect1"> Selecione a Unidade </label>
                 <select class="form-control" (change)="filterProfessor()" [(ngModel)]="unity" [ngModelOptions]="{standalone: true}" >
                     <option value=""> Todas as unidades </option>
-                    <option *ngFor="let unity of unidades" [value]="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME -->
+                    <option *ngFor="let unity of unidades" [value]="unity.cod" > {{ unity.nome }} </option> <!-- MUDAR O NOME 
                 </select>
             </div>
         </div>
-    </form>
+    </form> -->
     <div class="card-columns">
         <div class="card border-primary" *ngFor="let professor of professores">
             <div class="card-header">
