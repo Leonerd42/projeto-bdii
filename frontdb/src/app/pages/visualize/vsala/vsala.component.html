@@ -17,12 +17,15 @@
     <div class="" *ngIf="unity != '' && salas.length == 0 ">
             Selecione uma unidade para carregar as salas
         </div>
-    <div *ngFor="let sala of salas" class="card mt-3">
-        <div class="card-header">
-            <h4> Código da sala: {{ sala.cod_sala }}</h4>
+    <ng-container *ngFor="let sala of salas">
+        <div *ngIf="sala.cod_sala != null" class="card mt-3">
+            <div class="card-header" >
+                <h4> Código da sala: {{ sala.cod_sala }}</h4>
+            </div>
+            <!-- <div class="card-body">
+                <p class="card-text"> <strong> Descrição da sala: </strong> {{ sala.description }} </p>
+            </div> -->
         </div>
-        <!-- <div class="card-body">
-            <p class="card-text"> <strong> Descrição da sala: </strong> {{ sala.description }} </p>
-        </div> -->
-    </div>
+    </ng-container>
+    
 </div>

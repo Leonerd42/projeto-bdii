@@ -37,7 +37,10 @@
                     <label for=""> Sala </label>
                     <select type="text" class="form-control" [disabled]="unity == ''" [(ngModel)]="sala" [ngModelOptions]="{standalone: true}">
                         <option value=""> Selecione a sala </option>
-                        <option *ngFor="let sala of BDSala" [value]="sala.cod_sala" > {{ sala.cod_sala }} </option>
+                        <ng-container *ngFor="let sala of BDSala">
+                            <option *ngIf="sala.cod_sala != null" [value]="sala.cod_sala" > {{ sala.cod_sala }} </option>
+                        </ng-container>
+                        
                     </select>
                 </div>
             </div>
